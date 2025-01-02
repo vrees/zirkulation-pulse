@@ -1,5 +1,6 @@
 # Wlan Einschalter für die Zirkulationspumpe
 
+Startet die Zirkulationspume von Rundweg 16a. 
 Das verwendete Board sendet via WLAN 'Buehl-private' ein HTTP Post Request an Home Assistant. Der zugehöriges EspHome Client, basierednde auf Sonoff Basic schaltet über ein Relais für 2 Sekunden das Zeitrelais in der Zirkulations-Abzweigdose. Die Zirkulation wird dann für dei eingestellte Zeit von 4 Minuten eingeschaltet.
 
 
@@ -12,4 +13,8 @@ Das verwendete Board sendet via WLAN 'Buehl-private' ein HTTP Post Request an Ho
 | RST      | grün     | Reset-Taster   |
 | GPIO2    | gelb     | LED-Kathode    |
 
+
+=======
+# zirkulation-pulse
+Startet die Zirkulationspume von Rundweg 16a. 
 
