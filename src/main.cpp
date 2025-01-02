@@ -25,6 +25,7 @@ void sendPostRequest();
 void blinkError();
 void blinkSuccess();
 void shutdown();
+boolean checkHttpStatus();
 
 void connectionFailed()
 {
@@ -95,7 +96,13 @@ void sendPostRequest()
                "Connection: close\r\n\r\n" +
                POST_DATA);
 
-  // Wait for the server's response
+  checkHttpStatus();
+
+  client.stop();
+}
+
+boolean checkHttpStatus() {
+    // Wait for the server's response
   unsigned long timeout = millis();
   while (!client.available())
   {
@@ -103,8 +110,7 @@ void sendPostRequest()
     { // Wait up to 5 seconds
       Serial.println("Server response timeout.");
       blinkError();
-      client.stop();
-      return;
+      return false;
     }
   }
 
@@ -129,26 +135,27 @@ void sendPostRequest()
     {
       Serial.println("HTTP request successful.");
       blinkSuccess();
+      return true;
     }
     else
     {
       Serial.println("HTTP request failed with status: " + String(statusCode));
       blinkError();
+      return false;
     }
   }
   else
   {
     Serial.println("Invalid HTTP response.");
     blinkError();
+    return false;
   }
-
-  client.stop();
 }
 
 void blinkSuccess()
 {
   digitalWrite(LED, LOW); // turn the LED on
-  delay(2000);            // wait
+  delay(3000);            // wait
 }
 
 void blinkError()
