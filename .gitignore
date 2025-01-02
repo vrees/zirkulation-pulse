@@ -1,3 +1,4 @@
+.pio
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
